@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> Registro de citas </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://sirness.com/js/smart-forms/smart-forms.css">
+    <script type="text/javascript" src="https://sirness.com/js/smart-forms/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://sirness.com/js/smart-forms/jquery-ui-custom.min.js"></script>
+    <script type="text/javascript" src="https://sirness.com/js/smart-forms/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://sirness.com/js/smart-forms/additional-methods.min.js"></script>
+    <script type="text/javascript" src="../altaCitas.js"></script>
+</head>
+<body>
+<div class="smart-wrap">
+    <div class="smart-forms smart-container wrap-2">
+        <div class="form-header header-primary">
+            <h4><i class="fa fa-calendar"></i>Regitro de citas</h4>
+        </div>
+        <form method="post" action="/" id="contact">
+            <div class="form-body">
+                <div class="section">
+                    <label for="paciente" class="field-label">Nombre del paciente</label>
+                    <label for="paciente" class="field prepend-icon">
+                        <input type="text" name="paciente" id="paciente" class="gui-input" required="" placeholder="John Doe/Jane Doe">
+                    </label>
+                </div>
+                <div class="frm-row">
+                    <div class="section colm colm6">
+                        <label for="fechaCita" class="field-label">Fecha de la cita</label>
+                        <label for="fechaCita" class="field prepend-icon">
+                            <input type="text" id="fechaCita" name="fechaCita" class="gui-input" required="" placeholder="dd/mm/yyyy">
+                        </label>
+                    </div>
+                    <div class="section colm colm6">
+                        <label for="horaCita" class="field-label">Hora de la cita</label>
+                        <label for="horaCita" class="field prepend-icon">
+                            <input type="text" id="horaCita" name="horaCita" class="gui-input" required="" placeholder="hh:mm">
+                        </label>
+                    </div>
+                </div>
+                <div class="frm-row">
+                    <div class="section colm colm6">
+                        <label for="doctor" class="field-label">Doctores</label>
+                        <label for="doctor" class="field prepend-icon">
+                            <select class="form-control" id="doctor">
+                                <option value="0">Eliga doctor</option>
+                                <option th:each="doctor : ${doctores}"
+                                        th:value="${doctor.doctorId}"
+                                        th:text="${doctor.nombre+' '+doctor.apellidoPaterno+' - '+doctor.especialidad}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="section colm colm6">
+                        <label for="consultorio" class="field-label">Consultorio</label>
+                        <label for="consultorio" class="field prepend-icon">
+                            <select class="form-control" id="consultorio">
+                                <option value="0">Eliga consultorio</option>
+                                <option th:each="consultorio : ${consultorios}"
+                                        th:value="${consultorio.consultorioId}"
+                                        th:text="${consultorio.consultorio}">
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-footer">
+                <button type="button" id="guardar" class="button btn-primary">Registrar</button>
+                <button type="reset" class="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
